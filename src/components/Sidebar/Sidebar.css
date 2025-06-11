@@ -173,7 +173,7 @@ hr {
   .admin-sidebar {
     width: 100%;
     height: auto;
-    position: relative;
+    position: sticky;
     min-height: auto;
   }
   
