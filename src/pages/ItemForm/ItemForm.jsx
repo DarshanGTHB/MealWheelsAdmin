@@ -17,15 +17,14 @@ const ItemForm = () => {
 
   // Predefined categories
   const categories = [
-    'Electronics',
-    'Clothing',
-    'Home & Garden',
-    'Sports',
-    'Books',
-    'Food & Beverages',
-    'Health & Beauty',
-    'Toys & Games',
-    'Automotive',
+    'Salad',
+    'Rolls',
+    'Deserts',
+    'Sandwich',
+    'Cake',
+    'Pure Veg',
+    'Pasta',
+    'Noodles',
     'Other'
   ];
 
