@@ -3,8 +3,15 @@ import { useNavigate } from "react-router-dom";
 import "./Products.css";
 import { food_list } from "../../assets/frontend_assets/assets";
 import Item from "../../components/Item/Item";
+import { useContext } from "react";
+import FirebaseContext from "../../context/Firebase/FirebaseContext";
+import LoginWarn from "../LoginWarn/LoginWarn";
 
 const Products = () => {
+
+  const {user} = useContext(FirebaseContext);
+  if(!user) return <LoginWarn/>
+
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

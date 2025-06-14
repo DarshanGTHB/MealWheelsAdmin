@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ItemForm.css';
+import FirebaseContext from '../../context/Firebase/FirebaseContext';
 
 const ItemForm = () => {
+  const {user, userToken} = useContext(FirebaseContext);
+  console.log(user, userToken);
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
@@ -17,15 +21,14 @@ const ItemForm = () => {
 
   // Predefined categories
   const categories = [
-    'Electronics',
-    'Clothing',
-    'Home & Garden',
-    'Sports',
-    'Books',
-    'Food & Beverages',
-    'Health & Beauty',
-    'Toys & Games',
-    'Automotive',
+    'Salad',
+    'Rolls',
+    'Deserts',
+    'Sandwich',
+    'Cake',
+    'Pure Veg',
+    'Pasta',
+    'Noodles',
     'Other'
   ];
 
@@ -136,7 +139,11 @@ const ItemForm = () => {
       
       const response = await fetch('http://localhost:5000/api/items/', {
         method: 'POST',
-        body: formDataToSend,
+        headers: {
+          'Authorization': `Bearer ${userToken}`,
+          'Content-Type': 'application/json'
+        },
+        body: formDataToSend
       });
       
       if (!response.ok) {

@@ -1,0 +1,594 @@
+.signin-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Smaller Sign-In Button */
+.sign-in-btn {
+  position: relative;
+  background: linear-gradient(135deg, #ff7e38 0%, #e57e6c 100%);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  padding: 12px 28px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  outline: none;
+  /* box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3); */
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transform-style: preserve-3d;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+  display: block;
+}
+
+.btn-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.8s ease;
+}
+
+.sign-in-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #d8865a 0%, #ff6060 100%);
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.sign-in-btn:hover .btn-glow {
+  left: 100%;
+}
+
+.sign-in-btn:hover {
+  transform: translateY(-0.5px) scale(1.01)   ;
+  /* box-shadow: 0 12px 28px rgba(102, 126, 234, 0.4); */
+}
+
+.sign-in-btn:hover::before {
+  opacity: 1;
+}
+
+.sign-in-btn:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Smaller Popup Card */
+.popup-card {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 360px;
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  position: relative;
+  animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.close-btn:hover {
+  background: rgba(248, 113, 113, 0.1);
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+/* Smaller Popup Header */
+.popup-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.popup-header h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #3b281e;
+  margin: 0 0 6px 0;
+  background: linear-gradient(135deg, #ea6666, #a26b4b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.popup-header p {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Compact Form Styles */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.85rem;
+}
+
+.form-group input {
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  outline: none;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.form-group input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+.form-group input::placeholder {
+  color: #94a3b8;
+}
+
+/* Smaller Create Account Button */
+.create-account-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 6px;
+}
+
+.create-account-btn:hover {
+  transform: translateY(-0.5px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+.create-account-btn:active {
+  transform: translateY(0);
+}
+
+/* Smaller Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 18px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+}
+
+.divider span {
+  padding: 0 12px;
+  font-size: 0.8rem;
+  color: #64748b;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, #e2e8f0, transparent);
+}
+
+/* Smaller Google Sign-in Button */
+.google-signin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 1);
+  color: #374151;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.google-signin-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(66, 133, 244, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.google-signin-btn:hover::before {
+  left: 100%;
+}
+
+.google-signin-btn:hover {
+  border-color: #4285f4;
+  transform: translateY(-0.5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.google-icon {
+  flex-shrink: 0;
+}
+
+/* Smaller Auth Switch */
+.auth-switch {
+  text-align: center;
+  margin-top: 18px;
+  padding: 12px;
+  background: rgba(248, 250, 252, 0.8);
+  border-radius: 10px;
+}
+
+.auth-switch span {
+  color: #64748b;
+  font-size: 0.85rem;
+}
+
+.switch-btn {
+  background: none;
+  border: none;
+  color: #667eea;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.switch-btn:hover {
+  color: #5a67d8;
+  text-decoration-thickness: 2px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .popup-card {
+    width: 95%;
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .popup-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .sign-in-btn {
+    padding: 10px 24px;
+    font-size: 0.85rem;
+  }
+}
+
+
+/* Add these styles to your existing SignInPopup.css */
+
+/* Error and Success Messages */
+.error-message {
+  color: #ef4444;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.error-message::before {
+  content: "⚠";
+  font-size: 0.7rem;
+}
+
+.general-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.general-error::before {
+  content: "❌";
+  margin-right: 6px;
+}
+
+.success-message {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #059669;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 16px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.success-message::before {
+  content: "✅";
+}
+
+/* Input Error States */
+.form-group input.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  background: rgba(254, 242, 242, 0.8);
+}
+
+.form-group input.error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #ffffff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Disabled Button States */
+.create-account-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.google-signin-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.switch-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Disabled Input States */
+.form-group input:disabled {
+  background-color: rgba(243, 244, 246, 0.8);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Enhanced Form Group for Better Error Display */
+.form-group {
+  position: relative;
+}
+
+/* Smooth Transitions for Error States */
+.form-group input {
+  transition: all 0.3s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Better Visual Feedback for Focus States */
+.form-group input:focus:not(.error) {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-1px);
+}
+
+/* Password Strength Indicator (Optional Enhancement) */
+.password-strength {
+  margin-top: 4px;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+.password-strength.weak {
+  color: #ef4444;
+}
+
+.password-strength.medium {
+  color: #f59e0b;
+}
+
+.password-strength.strong {
+  color: #10b981;
+}
+
+/* Enhanced Close Button with Better Feedback */
+.close-btn:hover {
+  background: rgba(248, 113, 113, 0.1);
+  color: #ef4444;
+  transform: scale(1.1) rotate(90deg);
+}
+
+/* Better Mobile Error Message Display */
+@media (max-width: 768px) {
+  .error-message {
+    font-size: 0.75rem;
+  }
+  
+  .general-error,
+  .success-message {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+}
+
+/* Form Validation Animations */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
+  20%, 40%, 60%, 80% { transform: translateX(2px); }
+}
+
+.form-group input.error {
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Enhanced Button Loading State */
+.create-account-btn:disabled {
+  position: relative;
+  /* color: transparent; */
+}
+
+.create-account-btn:disabled .loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Success State Animation */
+.success-message {
+  animation: slideInSuccess 0.3s ease-out;
+}
+
+@keyframes slideInSuccess {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Error State Animation */
+.general-error {
+  animation: slideInError 0.3s ease-out;
+}
+
+@keyframes slideInError {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
