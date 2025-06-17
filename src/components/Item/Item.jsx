@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Item.css";
+import { toast } from "react-toastify";
 
 const Item = ({ item, fetchProducts }) => {
+  const [deleting, setDeleting] = useState(false);
   const handleDelete = async () => {
+    setDeleting(true);
     try {
       const response = await fetch(
         `http://localhost:5000/api/items/${item._id}`,
@@ -13,16 +16,14 @@ const Item = ({ item, fetchProducts }) => {
           },
         }
       );
-      fetchProducts();
       if (!response.ok) {
         throw new Error("Failed to delete item");
       }
-
-      // Call the onDelete prop to update the parent component's state
-      //   onDelete(item._id);
+      fetchProducts();
     } catch (error) {
       console.error("Error deleting item:", error);
-      // You might want to show an error message to the user here
+    } finally {
+      setDeleting(false);
     }
   };
 
@@ -46,8 +47,16 @@ const Item = ({ item, fetchProducts }) => {
             <i className="fas fa-edit"></i>
             Edit
           </button>
-          <button className="delete-btn" onClick={handleDelete}>
-            <i className="fas fa-trash-alt"></i>
+          <button
+            className="delete-btn"
+            onClick={handleDelete}
+            disabled={deleting}
+          >
+            {deleting ? (
+              <span className="spinner"></span>
+            ) : (
+              <i className="fas fa-trash-alt"></i>
+            )}
             Delete
           </button>
         </div>

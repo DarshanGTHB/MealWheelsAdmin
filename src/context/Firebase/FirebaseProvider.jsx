@@ -9,6 +9,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import FirebaseContext from "./FirebaseContext";
+import { toast } from "react-toastify";
 
 const auth = getAuth(firebaseApp);
 
@@ -63,6 +64,7 @@ const FirebaseProvider = ({ children }) => {
       const provider = new GoogleAuthProvider();
       const result = await signInWithPopup(auth, provider);
       setUser(result.user);
+      toast.success('Successfully signed up with google.')
       return result.user;
     } catch (error) {
       setError(error.message);
@@ -107,6 +109,7 @@ const FirebaseProvider = ({ children }) => {
   const signOut = async () => {
     try {
       await auth.signOut();
+      toast.success("successfully logged out. ")
       setUser(null);
     } catch (error) {
       console.error("Error signing out:", error);

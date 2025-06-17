@@ -2,10 +2,13 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ItemForm.css';
 import FirebaseContext from '../../context/Firebase/FirebaseContext';
-
+import LoginWarn from "../LoginWarn/LoginWarn";
+import { toast } from 'react-toastify';
 const ItemForm = () => {
   const {user, userToken} = useContext(FirebaseContext);
   console.log(user, userToken);
+
+  if(!user) return <LoginWarn/>;
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -141,16 +144,18 @@ const ItemForm = () => {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${userToken}`,
-          'Content-Type': 'application/json'
         },
         body: formDataToSend
       });
       
       if (!response.ok) {
-        throw new Error('Failed to create product');
+        toast.error('Only admin can upload item.');
+        
+        throw new Error('Only admin can upload item.');
       }
       
       // Success - redirect back to products
+      toast.success('item added.')
       navigate('/products');
     } catch (error) {
       console.error('Error creating product:', error);

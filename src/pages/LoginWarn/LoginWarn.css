@@ -1,4 +1,275 @@
-.login-warn{
-    display: flex;
-    justify-content: center;
+.warning-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.warning-card {
+  position: relative;
+  max-width: 520px;
+  width: 100%;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-header {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  padding: 24px;
+  border-bottom: 3px solid #f97316;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-container {
+  background: #f97316;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shield-icon {
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.main-title {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.subtitle {
+  color: #cbd5e1;
+  font-size: 14px;
+  margin: 0;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.close-button:hover {
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.close-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.card-content {
+  padding: 24px;
+}
+
+.warning-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.alert-icon-container {
+  background: #fff7ed;
+  border-radius: 8px;
+  padding: 8px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.alert-icon {
+  width: 20px;
+  height: 20px;
+  color: #ea580c;
+}
+
+.warning-text {
+  flex: 1;
+}
+
+.warning-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 8px 0;
+}
+
+.warning-description {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.security-features {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+}
+
+.features-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.lock-icon {
+  width: 16px;
+  height: 16px;
+  color: #64748b;
+}
+
+.features-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 24px;
+}
+
+.features-list li {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.features-list li:last-child {
+  margin-bottom: 0;
+}
+
+.action-section {
+  display: flex;
+  justify-content: center;
+}
+
+.understand-button {
+  padding: 12px 32px;
+  background: #f1f5f9;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.understand-button:hover {
+  background: #e2e8f0;
+  transform: scale(1.02);
+}
+
+.understand-button:active {
+  transform: scale(0.98);
+}
+
+.card-footer {
+  background: #f8fafc;
+  padding: 12px 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.footer-text {
+  font-size: 12px;
+  color: #64748b;
+  text-align: center;
+  margin: 0;
+}
+
+.demo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.show-button {
+  padding: 12px 24px;
+  background: #475569;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.show-button:hover {
+  background: #334155;
+}
+
+@media (max-width: 640px) {
+  .warning-container {
+    padding: 16px;
+  }
+
+  .card-header {
+    padding: 20px;
+  }
+
+  .card-content {
+    padding: 20px;
+  }
+
+  .main-title {
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 13px;
+  }
 }
