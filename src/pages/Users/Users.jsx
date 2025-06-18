@@ -5,6 +5,7 @@ import LoginWarn from "../LoginWarn/LoginWarn";
 
 const Users = () => {
   const { user } = useContext(FirebaseContext);
+  console.log(user)
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,64 +13,6 @@ const Users = () => {
   const [error, setError] = useState(null);
 
   // Mock data - replace with actual API call
-  const mockUsers = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      role: "admin",
-      joinDate: "2024-01-15",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      role: "user",
-      joinDate: "2024-02-20",
-    },
-    {
-      id: 3,
-      name: "Mike Johnson",
-      email: "mike.johnson@example.com",
-      role: "user",
-      joinDate: "2024-01-10",
-    },
-    {
-      id: 4,
-      name: "Sarah Wilson",
-      email: "sarah.wilson@example.com",
-      role: "user",
-      joinDate: "2024-03-05",
-    },
-    {
-      id: 5,
-      name: "Alex Brown",
-      email: "alex.brown@example.com",
-      role: "admin",
-      joinDate: "2024-01-25",
-    },
-    {
-      id: 6,
-      name: "Emily Davis",
-      email: "emily.davis@example.com",
-      role: "user",
-      joinDate: "2024-02-10",
-    },
-    {
-      id: 7,
-      name: "Robert Taylor",
-      email: "robert.taylor@example.com",
-      role: "admin",
-      joinDate: "2024-01-05",
-    },
-    {
-      id: 8,
-      name: "Lisa Anderson",
-      email: "lisa.anderson@example.com",
-      role: "user",
-      joinDate: "2024-03-15",
-    },
-  ];
 
   useEffect(() => {
     // Replace this with your actual API call
@@ -195,7 +138,9 @@ const Users = () => {
                     <p className="user-email">{user.email}</p>
                     <div className="user-meta">
                       <span className={getRoleBadgeClass(user.role)}>
-                        {user.role}
+                        {/* {user.role} */}
+                        Admin
+                        
                       </span>
                       <span className={getStatusBadgeClass(user.status)}>
                         {user.status}
