@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import { Shield, AlertCircle, X, Lock } from 'lucide-react';
 import './LoginWarn.css'
 import SignInPopup from '../../components/SignInPopup/SignInPopup';
-import FirebaseContext from '../../context/Firebase/FirebaseContext';
 
 export default function LoginWarn() {
 

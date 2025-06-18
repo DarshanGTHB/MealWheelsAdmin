@@ -48,7 +48,7 @@ const FirebaseProvider = ({ children }) => {
 
   useEffect(() => {
     if (user && user.email) {
-      fetch(`http://localhost:5000/api/users/${encodeURIComponent(user.email)}`)
+      fetch(`http://localhost:5000/api/users/${encodeURIComponent(user.uid)}`)
         .then((res) => res.json())
         .then((data) => setMongoUser(data))
         .catch((err) => setMongoUser(null));
@@ -82,7 +82,7 @@ const FirebaseProvider = ({ children }) => {
         password
       );
       const user = userCredential.user;
-      console.log("User signed up:", user);
+      // console.log("User signed up:", user);
       return user;
     } catch (error) {
       console.error("Error signing up:", error);
@@ -98,7 +98,7 @@ const FirebaseProvider = ({ children }) => {
         password
       );
       const user = userCredential.user;
-      console.log("User signed in:", user);
+      // console.log("User signed in:", user);
       return user;
     } catch (error) {
       console.error("Error signing in:", error);

@@ -29,7 +29,7 @@ const Item = ({ item, fetchProducts }) => {
 
   const handleEdit = () => {
     // Add edit logic here
-    console.log("Edit item:", item.id);
+    // console.log("Edit item:", item.id);
   };
 
   return (

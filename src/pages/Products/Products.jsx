@@ -9,17 +9,16 @@ import LoginWarn from "../LoginWarn/LoginWarn";
 
 const Products = () => {
 
-  const {user} = useContext(FirebaseContext);
-  if(!user) return <LoginWarn/>
+  const {user, loading} = useContext(FirebaseContext);
 
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading_, setLoading_] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchProducts();
-    console.log(products);
+    // console.log(products);
   }, []);
 
   const fetchProducts = async () => {
@@ -30,10 +29,10 @@ const Products = () => {
       }
       const data = await response.json();
       setProducts(data.items);
-      setLoading(false);
+      setLoading_(false);
     } catch (err) {
       setError(err.message);
-      setLoading(false);
+      setLoading_(false);
     }
   };
 
@@ -41,13 +40,16 @@ const Products = () => {
     navigate('/add-item');
   };
 
-  if (loading) {
-    return <div className="loading">Loading products...</div>;
+  if (loading_) {
+    return <div className="loading_">Loading_ products...</div>;
   }
 
   if (error) {
     return <div className="error">Error: {error}</div>;
   }
+
+  if(!user && !loading) return <LoginWarn/>
+
 
   return (
     <div className="products-wrapper">

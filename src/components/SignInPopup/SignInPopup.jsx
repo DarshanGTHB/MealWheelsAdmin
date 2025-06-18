@@ -281,7 +281,7 @@ const SignInPopup = () => {
       }); 
       const data = await res.json();
 
-      console.log('mongo contest : ', data);
+      // console.log('mongo contest : ', data);
 
       setSuccessMessage("Successfully signed in with Google!");
       setTimeout(() => {

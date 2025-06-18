@@ -4,80 +4,31 @@ import FirebaseContext from "../../context/Firebase/FirebaseContext";
 import LoginWarn from "../LoginWarn/LoginWarn";
 
 const Users = () => {
-  const { user } = useContext(FirebaseContext);
+  const { user, loading } = useContext(FirebaseContext);
+  // console.log(user)
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading_, setLoading_] = useState(true);
   const [error, setError] = useState(null);
 
+  // console.log(loading_);
   // Mock data - replace with actual API call
-  const mockUsers = [
-    {
-      id: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      role: "admin",
-      joinDate: "2024-01-15",
-    },
-    {
-      id: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      role: "user",
-      joinDate: "2024-02-20",
-    },
-    {
-      id: 3,
-      name: "Mike Johnson",
-      email: "mike.johnson@example.com",
-      role: "user",
-      joinDate: "2024-01-10",
-    },
-    {
-      id: 4,
-      name: "Sarah Wilson",
-      email: "sarah.wilson@example.com",
-      role: "user",
-      joinDate: "2024-03-05",
-    },
-    {
-      id: 5,
-      name: "Alex Brown",
-      email: "alex.brown@example.com",
-      role: "admin",
-      joinDate: "2024-01-25",
-    },
-    {
-      id: 6,
-      name: "Emily Davis",
-      email: "emily.davis@example.com",
-      role: "user",
-      joinDate: "2024-02-10",
-    },
-    {
-      id: 7,
-      name: "Robert Taylor",
-      email: "robert.taylor@example.com",
-      role: "admin",
-      joinDate: "2024-01-05",
-    },
-    {
-      id: 8,
-      name: "Lisa Anderson",
-      email: "lisa.anderson@example.com",
-      role: "user",
-      joinDate: "2024-03-15",
-    },
-  ];
 
   useEffect(() => {
     // Replace this with your actual API call
     const fetchUsers = async () => {
       try {
-        setLoading(true);
         // Simulate API call
-        const res = await fetch('http://localhost:5000/api/users')
+        const res = await fetch('http://localhost:5000/api/users',
+          {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${user.accessToken}`,
+            },
+          }
+        )
         const data = await res.json();
         // console.log(data)
         setUsers(data.users);
@@ -85,15 +36,18 @@ const Users = () => {
       } catch (err) {
         setError("Failed to fetch users");
       } finally {
-        setLoading(false);
+        // console.log('changeing loding _');
+        setLoading_(false);
       }
     };
 
-    fetchUsers();
-  }, []);
+    if (user) {
+      fetchUsers();
+    }
+  }, [user]);
 
   useEffect(() => {
-    const filtered = users.filter(
+    const filtered = users?.filter(
       (user) =>
         user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         user.email.toLowerCase().includes(searchTerm.toLowerCase())
@@ -123,7 +77,7 @@ const Users = () => {
         return "badge badge-secondary";
     }
   }
-  if (!user) return <LoginWarn />;
+  if (!user && !loading) return <LoginWarn />;
 
   return (
     <div className="users-container">
@@ -156,12 +110,12 @@ const Users = () => {
 
         <div className="users-stats">
           <div className="stat-item">
-            <span className="stat-number">{users.length}</span>
+            <span className="stat-number">{users?.length}</span>
             <span className="stat-label">Total Users</span>
           </div>
           <div className="stat-item">
             <span className="stat-number">
-              {users.filter((u) => u.role === "admin").length}
+              {users?.filter((u) => u.role === "admin").length}
             </span>
             <span className="stat-label">Admins</span>
           </div>
@@ -169,10 +123,10 @@ const Users = () => {
       </div>
 
       <div className="users-content">
-        {loading ? (
-          <div className="loading-container">
-            <div className="loading-spinner"></div>
-            <p>Loading users...</p>
+        {loading_ ? (
+          <div className="loading_-container">
+            <div className="loading_-spinner"></div>
+            <p>Loading_ users...</p>
           </div>
         ) : error ? (
           <div className="error-container">
@@ -180,12 +134,12 @@ const Users = () => {
           </div>
         ) : (
           <div className="users-grid">
-            {filteredUsers.length === 0 ? (
+            {filteredUsers?.length === 0 ? (
               <div className="no-users">
                 <p>No users found matching your search.</p>
               </div>
             ) : (
-              filteredUsers.map((user) => (
+              filteredUsers?.map((user) => (
                 <div key={user.id} className="user-card">
                   <div className="user-avatar">
                     {user.name.charAt(0).toUpperCase()}
@@ -195,7 +149,9 @@ const Users = () => {
                     <p className="user-email">{user.email}</p>
                     <div className="user-meta">
                       <span className={getRoleBadgeClass(user.role)}>
-                        {user.role}
+                        {/* {user.role} */}
+                        Admin
+                        
                       </span>
                       <span className={getStatusBadgeClass(user.status)}>
                         {user.status}
