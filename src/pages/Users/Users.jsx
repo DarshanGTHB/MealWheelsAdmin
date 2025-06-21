@@ -4,8 +4,7 @@ import FirebaseContext from "../../context/Firebase/FirebaseContext";
 import LoginWarn from "../LoginWarn/LoginWarn";
 
 const Users = () => {
-  const { user, loading } = useContext(FirebaseContext);
-  // console.log(user)
+  const { user } = useContext(FirebaseContext);
   const [users, setUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
